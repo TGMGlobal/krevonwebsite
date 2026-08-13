@@ -1,0 +1,16 @@
+export function LogoMark({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 120 110"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <g fill="currentColor">
+        <path d="M52 54 C36 50 20 52 6 66 C22 72 40 70 52 60 C58 55 56 52 52 54 Z" />
+        <path d="M52 54 C58 40 62 22 82 6 C86 22 80 38 66 48 C60 52 54 56 52 54 Z" />
+        <path d="M52 54 C62 58 72 68 76 88 C60 86 48 76 46 62 C45 57 48 52 52 54 Z" />
+      </g>
+    </svg>
+  );
+}
