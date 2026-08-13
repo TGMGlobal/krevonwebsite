@@ -68,6 +68,14 @@ const PROJECTS: Project[] = [
   },
 ];
 
+const TILT = [
+  "md:-rotate-[0.6deg]",
+  "md:rotate-[0.9deg]",
+  "md:-rotate-[1.1deg]",
+  "md:rotate-[0.5deg]",
+  "md:-rotate-[0.8deg]",
+];
+
 const TONE_TEXT: Record<Project["tone"], string> = {
   olive: "text-paper",
   ink: "text-paper",
@@ -123,33 +131,39 @@ export function SelectedWork() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-        {PROJECTS.map((project) => (
-          <article
+        {PROJECTS.map((project, i) => (
+          <div
             key={project.index}
-            data-work-card
-            className={`group relative flex flex-col justify-end overflow-hidden border border-line ${TONE_TEXT[project.tone]} ${
-              project.size === "lg" ? "md:col-span-2 aspect-[16/9]" : "aspect-[4/5]"
+            className={`group transition-transform duration-500 ease-out hover:rotate-0 ${TILT[i % TILT.length]} ${
+              project.size === "lg" ? "md:col-span-2" : ""
             }`}
           >
-            <div className="transition-transform duration-700 ease-out group-hover:scale-105 absolute inset-0">
-              <WorkTile pattern={project.pattern} tone={project.tone} />
-            </div>
+            <article
+              data-work-card
+              className={`relative flex flex-col justify-end overflow-hidden border border-line ${TONE_TEXT[project.tone]} ${
+                project.size === "lg" ? "aspect-[16/9]" : "aspect-[4/5]"
+              }`}
+            >
+              <div className="transition-transform duration-700 ease-out group-hover:scale-105 absolute inset-0">
+                <WorkTile pattern={project.pattern} tone={project.tone} />
+              </div>
 
-            <div className="relative flex items-start justify-between p-5 md:p-7">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-current opacity-80">
-                {project.index} / {project.category}
-              </span>
-            </div>
+              <div className="relative flex items-start justify-between p-5 md:p-7">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-current opacity-80">
+                  {project.index} / {project.category}
+                </span>
+              </div>
 
-            <div className="relative mt-auto flex flex-col gap-2 p-5 pt-16 md:p-7 md:pt-24">
-              <h3 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">
-                {project.title}
-              </h3>
-              <p className="max-w-md text-pretty text-sm leading-relaxed opacity-90 md:text-base">
-                {project.description}
-              </p>
-            </div>
-          </article>
+              <div className="relative mt-auto flex flex-col gap-2 p-5 pt-16 md:p-7 md:pt-24">
+                <h3 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">
+                  {project.title}
+                </h3>
+                <p className="max-w-md text-pretty text-sm leading-relaxed opacity-90 md:text-base">
+                  {project.description}
+                </p>
+              </div>
+            </article>
+          </div>
         ))}
       </div>
     </section>
