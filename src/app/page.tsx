@@ -1,53 +1,54 @@
-import { SiteNav } from "@/components/SiteNav";
+import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
-import { CapabilityMarquee } from "@/components/CapabilityMarquee";
+import { ProofStrip } from "@/components/ProofStrip";
+import { ServicesIntro } from "@/components/ServicesIntro";
 import { SelectedWork } from "@/components/SelectedWork";
-import { Philosophy } from "@/components/Philosophy";
-import { HowWeSound } from "@/components/HowWeSound";
-import { Capabilities } from "@/components/Capabilities";
-import { Credibility } from "@/components/Credibility";
-import { FinalCta } from "@/components/FinalCta";
-import { Footer } from "@/components/Footer";
+import { Principles } from "@/components/Principles";
+import { Testimonials } from "@/components/Testimonials";
+import { CtaBand } from "@/components/CtaBand";
+import { home } from "@/content/home";
+import { site } from "@/content/site";
+import { services } from "@/content/approach";
+import { pageMeta } from "@/lib/seo";
+
+export const metadata: Metadata = pageMeta({
+  title: home.meta.title,
+  description: home.meta.description,
+  path: "/",
+  absoluteTitle: true,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Krevon Studio",
-  description:
-    "Krevon Studio is an independent creative, strategy and digital agency. Straight talk. Built to lead. We offer brand strategy, branding and identity, creative, social and content, websites, performance marketing and digital growth.",
-  url: "https://krevonstudio.com",
-  email: "hello@krevonstudio.com",
-  areaServed: "Worldwide",
-  knowsAbout: [
-    "Brand Strategy",
-    "Branding & Identity",
-    "Creative",
-    "Social & Content",
-    "Websites",
-    "Performance Marketing",
-    "Digital Growth",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  slogan: site.tagline,
+  description: site.description,
+  url: `${site.url}/`,
+  email: site.email,
+  logo: `${site.url}/brand/krevon-avatar.svg`,
+  image: `${site.url}/og.png`,
+  address: [
+    { "@type": "PostalAddress", addressLocality: "Indore", addressCountry: "IN" },
+    { "@type": "PostalAddress", addressLocality: "Mumbai", addressCountry: "IN" },
   ],
+  areaServed: site.markets,
+  sameAs: site.socials.map((social) => social.href),
+  knowsAbout: services.map((service) => service.title),
 };
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <SiteNav />
-      <main id="main">
-        <Hero />
-        <CapabilityMarquee />
-        <SelectedWork />
-        <Philosophy />
-        <HowWeSound />
-        <Capabilities />
-        <Credibility />
-        <FinalCta />
-      </main>
-      <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Hero />
+      <ProofStrip />
+      <ServicesIntro />
+      <SelectedWork />
+      <Principles />
+      <Testimonials />
+      <CtaBand heading={home.finalCta.heading} body={home.finalCta.body} button={home.finalCta.cta} />
     </>
   );
 }
