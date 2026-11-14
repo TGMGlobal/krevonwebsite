@@ -35,6 +35,8 @@ export type CaseStudy = {
   slug: string;
   /** Short name shown on tiles and as the page title. */
   client: string;
+  /** Browser tab and search result title for the case study page. */
+  metaTitle: string;
   /** One-line description of the project. */
   title: string;
   category: string;
@@ -89,6 +91,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "jk-cookery-school",
     client: "JK Cookery School",
+    metaTitle: "JK Cookery School: brand identity and paid growth",
     title: "Brand identity and paid growth for a culinary school",
     category: "Culinary school, online and offline workshops (India)",
     tags: ["Brand identity", "Paid growth"],
@@ -133,6 +136,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "us-healthcare-pitch-deck",
     client: "US healthcare startup",
+    metaTitle: "Seed pitch deck for a US healthcare startup",
     title: "A seed pitch deck for a sleep and productivity brand",
     category: "Early-stage US healthcare and lifestyle brand (insomnia and productivity)",
     tags: ["Pitch deck", "Investor narrative"],
@@ -167,6 +171,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "samyah-wellness",
     client: "Samyah Wellness",
+    metaTitle: "Samyah Wellness: performance marketing",
     title: "Performance marketing across Meta and Google",
     category:
       "Wellness studio, India: Pilates, yoga, functional training, sound healing, physiotherapy and recovery therapies, community events",
@@ -236,6 +241,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "shopify-catalogue-automation",
     client: "Shopify catalogue automation",
+    metaTitle: "Shopify catalogue automation with AI",
     title: "An AI system that drafts, reviews and publishes product listings",
     category: "AI and workflow automation for e-commerce and D2C. A Krevon system.",
     tags: ["AI automation", "Shopify", "D2C"],

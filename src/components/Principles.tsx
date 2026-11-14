@@ -21,7 +21,8 @@ export function Principles() {
             scrub: 0.5,
           },
         });
-        statement.from("[data-word]", { autoAlpha: 0.2, stagger: 0.4, ease: "none" });
+        // 0.45 keeps the dimmed words above the 3:1 contrast needed for large text.
+        statement.from("[data-word]", { autoAlpha: 0.45, stagger: 0.4, ease: "none" });
 
         gsap.utils.toArray<HTMLElement>("[data-principle]").forEach((item) => {
           const tl = gsap.timeline({

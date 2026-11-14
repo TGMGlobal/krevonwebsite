@@ -10,17 +10,20 @@ export function CaseTile({
   index,
   wide = false,
   priority = false,
+  heading: Heading = "h3",
 }: {
   study: CaseStudy;
   index: number;
   wide?: boolean;
   priority?: boolean;
+  /** Heading level for the client name, so each page keeps a correct outline. */
+  heading?: "h2" | "h3";
 }) {
   return (
     <Link
       href={`/work/${study.slug}/`}
-      className={`group relative flex flex-col justify-between overflow-hidden border border-cream/15 text-cream transition-colors duration-300 hover:border-green ${
-        wide ? "aspect-[4/5] sm:aspect-[16/10] md:col-span-2 lg:aspect-[21/9]" : "aspect-[4/5] sm:aspect-[16/10] md:aspect-[4/5] xl:aspect-[5/5]"
+      className={`group relative flex w-full flex-col justify-between overflow-hidden border border-cream/15 text-cream transition-colors duration-300 hover:border-green ${
+        wide ? "min-h-[30rem] sm:aspect-[16/10] lg:aspect-[21/9]" : "min-h-[30rem] sm:aspect-[16/10] lg:aspect-[4/5] xl:aspect-square"
       }`}
     >
       <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]">
@@ -29,7 +32,7 @@ export function CaseTile({
           pattern={study.pattern}
           priority={priority}
           showLabel={false}
-          sizes={wide ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
+          sizes={wide ? "100vw" : "(min-width: 1024px) 50vw, 100vw"}
         />
         {study.cover.src ? (
           <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-black/20" />
@@ -61,7 +64,7 @@ export function CaseTile({
         </div>
         <div className="flex items-end justify-between gap-6 border-t border-cream/20 pt-5">
           <div>
-            <h3 className="display text-3xl md:text-4xl">{study.client}</h3>
+            <Heading className="display text-3xl md:text-4xl">{study.client}</Heading>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/80">{study.title}</p>
           </div>
           <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-cream/40 transition-colors duration-300 group-hover:border-green group-hover:bg-green group-hover:text-black">

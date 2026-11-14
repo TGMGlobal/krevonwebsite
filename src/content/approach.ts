@@ -74,6 +74,8 @@ export const approach = {
   paths: {
     eyebrow: "After the sprint",
     heading: "Every sprint ends with the same three paths.",
+    /** Shown before each number: "Path 1", "Path 2", "Path 3". */
+    itemLabel: "Path",
     items: [
       {
         title: "Do it yourself",

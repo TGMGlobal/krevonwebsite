@@ -63,7 +63,7 @@ export default function ApproachPage() {
             <Reveal as="ol" stagger className="mt-10 grid grid-cols-1 gap-px bg-cream/20 md:mt-14 md:grid-cols-3">
               {paths.items.map((path, i) => (
                 <li key={path.title} className="bg-black py-8 md:px-8 md:py-10 md:first:pl-0 md:last:pr-0">
-                  <span className="eyebrow text-green">{`Path ${i + 1}`}</span>
+                  <span className="eyebrow text-green">{`${paths.itemLabel} ${i + 1}`}</span>
                   <h3 className="display mt-4 text-3xl text-cream md:text-4xl">{path.title}</h3>
                   <p className="mt-4 max-w-sm text-base leading-relaxed text-cream/85">{path.body}</p>
                 </li>

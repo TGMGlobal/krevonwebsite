@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!study) return {};
 
   return pageMeta({
-    title: `${study.client}: ${study.tags[0]}`,
+    title: study.metaTitle,
     description: study.metaDescription,
     path: `/work/${study.slug}/`,
   });

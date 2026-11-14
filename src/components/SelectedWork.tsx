@@ -5,14 +5,20 @@ import { CaseTile } from "./CaseTile";
 import { Reveal } from "./Reveal";
 
 /** The case study grid. First and last tiles run full width. */
-export function WorkGrid({ priorityFirst = false }: { priorityFirst?: boolean }) {
+export function WorkGrid({
+  priorityFirst = false,
+  heading = "h3",
+}: {
+  priorityFirst?: boolean;
+  heading?: "h2" | "h3";
+}) {
   return (
-    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
       {caseStudies.map((study, i) => {
         const wide = i % 3 === 0;
         return (
-          <Reveal key={study.slug} className={wide ? "md:col-span-2" : ""}>
-            <CaseTile study={study} index={i} wide={wide} priority={priorityFirst && i === 0} />
+          <Reveal key={study.slug} className={wide ? "lg:col-span-2" : ""}>
+            <CaseTile study={study} index={i} wide={wide} priority={priorityFirst && i === 0} heading={heading} />
           </Reveal>
         );
       })}

@@ -17,7 +17,7 @@ export default function WorkPage() {
       <PageHeader eyebrow={workPage.eyebrow} heading={workPage.heading} body={workPage.body} />
       <section className="bg-black">
         <div className="shell pb-20 md:pb-32">
-          <WorkGrid />
+          <WorkGrid heading="h2" priorityFirst />
         </div>
       </section>
       <CtaBand heading={workPage.cta.heading} body={workPage.cta.body} button={workPage.cta.button} />

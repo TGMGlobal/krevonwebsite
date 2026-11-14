@@ -52,11 +52,13 @@ export function ProofStrip() {
         </ul>
 
         <div aria-hidden="true" className="group overflow-hidden">
-          <div className="flex w-max animate-marquee gap-10 group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:px-5 md:gap-14">
+          <div className="flex w-max animate-marquee gap-10 group-hover:[animation-play-state:paused] motion-reduce:shell motion-reduce:animate-none md:gap-14">
             {[0, 1].map((copy) => (
               <div
                 key={copy}
-                className={`flex shrink-0 items-center gap-10 md:gap-14 ${copy === 1 ? "motion-reduce:hidden" : "motion-reduce:flex-wrap"}`}
+                className={`flex shrink-0 items-center gap-10 md:gap-14 ${
+                  copy === 1 ? "motion-reduce:hidden" : "motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:gap-y-3"
+                }`}
               >
                 {clients.map((client) => (
                   <ClientItem key={client.name} name={client.name} logo={client.logo} />
