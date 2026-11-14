@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" role="img" aria-label="Krevon Studio (placeholder logo)">
+  <!-- PLACEHOLDER. Replace this file with the real logo: green mark, cream wordmark, for black backgrounds. Keep the filename. -->
+  <rect x="82" y="6" width="36" height="36" fill="none" stroke="#39D753" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="100" y="80" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="28" letter-spacing="8" fill="#EEE2D4">KREVON</text>
+  <text x="100" y="106" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="13" letter-spacing="9" fill="#EEE2D4">STUDIO</text>
+</svg>

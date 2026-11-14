@@ -1,28 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Type */
-  --font-display: var(--font-fraunces), "Iowan Old Style", serif;
-  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  --font-mono: var(--font-space-mono), "Courier New", monospace;
+  /* Krevon brand palette. These four are the only colours on the site.
+     Softer text and hairlines are opacity tints of them (e.g. text-cream/70). */
+  --color-*: initial;
+  --color-black: #000000;
+  --color-green: #39d753;
+  --color-cream: #eee2d4;
+  --color-offwhite: #f9f9f9;
 
-  /* Krevon brand system — Deep Charcoal / Warm Stone / Olive */
-  --color-paper: #efe9dc;
-  --color-paper-dim: #e2d9c6;
-  --color-stone: #c9bfae;
-  --color-ink: #1b1a17;
-  --color-ink-soft: #4a473f;
-  --color-ink-faint: #8b8677;
-  --color-olive: #6f7a52;
-  --color-olive-dim: #565f3f;
-  --color-sage: #a9b48a;
-  --color-line: #1b1a171f;
-  --color-line-dark: #efe9dc26;
+  /* Type. --font-display-face is set in src/app/layout.tsx (Rajdhani for now,
+     licensed Agency later). --font-body-face is Montserrat. */
+  --font-display: var(--font-display-face), "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-sans: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
 
-  --breakpoint-xs: 22.5rem;
-
-  --animate-marquee: marquee 32s linear infinite;
-  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-marquee: marquee 40s linear infinite;
 
   @keyframes marquee {
     from {
@@ -35,42 +27,35 @@
 }
 
 @layer base {
-  * {
-    border-color: var(--color-line);
-  }
-
   html {
-    scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    background: var(--color-black);
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-black);
+    color: var(--color-cream);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01" 1, "case" 1;
     overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: var(--color-olive);
-    color: var(--color-paper);
-  }
-
-  a,
-  button {
-    -webkit-tap-highlight-color: transparent;
+    background: var(--color-green);
+    color: var(--color-black);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-olive);
+    outline: 2px solid var(--color-green);
     outline-offset: 3px;
   }
 
+  /* Green has too little contrast on light or green backgrounds. */
+  .on-light :focus-visible {
+    outline-color: var(--color-black);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     *::before,
     *::after {
@@ -82,26 +67,37 @@
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Page gutter and max width */
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 100rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
   }
 
-  .text-pretty {
-    text-wrap: pretty;
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
   }
+}
 
-  .grain {
-    position: relative;
-  }
+/* Display headings: tight caps */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+}
 
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+/* Small spaced labels */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }

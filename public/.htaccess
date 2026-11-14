@@ -1,0 +1,22 @@
+# Krevon Studio static site (Next.js export) on Hostinger
+
+# Branded 404 page for missing routes
+ErrorDocument 404 /404.html
+
+# No directory listings
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Flag hashed build assets so they can be cached for a year
+  RewriteRule ^_next/static/ - [E=KREVON_IMMUTABLE:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=KREVON_IMMUTABLE
+</IfModule>

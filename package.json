@@ -2,7 +2,7 @@
   "name": "krevonwebsite",
   "version": "1.0.0",
   "private": true,
-  "description": "Krevon Studio — creative, strategy and digital agency.",
+  "description": "Krevon Studio website. Creative, strategy and automation studio.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
