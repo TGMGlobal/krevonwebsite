@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
 import { home } from "@/content/home";
 import { ogImage } from "@/lib/seo";
+import { asset, isPreview } from "@/lib/paths";
 import "./globals.css";
 
 /**
@@ -57,11 +58,12 @@ export const metadata: Metadata = {
     images: [ogImage.url],
   },
   icons: {
-    icon: "/brand/krevon-avatar.svg",
+    icon: asset("/brand/krevon-avatar.svg"),
   },
+  // Preview builds (GitHub Pages) are kept out of search engines.
   robots: {
-    index: true,
-    follow: true,
+    index: !isPreview,
+    follow: !isPreview,
   },
 };
 

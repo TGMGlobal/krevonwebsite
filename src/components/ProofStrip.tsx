@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
+import { asset } from "@/lib/paths";
 
 function ClientItem({ name, logo }: { name: string; logo: string | null }) {
   return (
     <span className="flex shrink-0 items-center gap-10 md:gap-14">
       {logo ? (
-        <Image src={logo} alt={name} width={160} height={48} loading="lazy" className="h-9 w-auto md:h-11" />
+        <Image src={asset(logo)} alt={name} width={160} height={48} loading="lazy" className="h-9 w-auto md:h-11" />
       ) : (
         <span className="display text-3xl text-cream md:text-5xl">{name}</span>
       )}

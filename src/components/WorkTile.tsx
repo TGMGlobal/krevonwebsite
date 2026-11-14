@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ImageSlot, Pattern } from "@/content/work";
 import { workPage } from "@/content/work";
+import { asset } from "@/lib/paths";
 
 const PATTERNS: Record<Pattern, { image: string; size?: string }> = {
   dots: { image: "radial-gradient(currentColor 1.5px, transparent 1.5px)", size: "18px 18px" },
@@ -34,7 +35,7 @@ export function WorkTile({
   if (image.src) {
     return (
       <Image
-        src={image.src}
+        src={asset(image.src)}
         alt={image.alt}
         fill
         sizes={sizes}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/content/site";
+import { asset } from "@/lib/paths";
 
 /**
  * The Krevon logo, always from the SVG files in public/brand/.
@@ -16,7 +17,7 @@ export function Logo({
 }) {
   return (
     <Image
-      src={`/brand/krevon-logo-on-${on}.svg`}
+      src={asset(`/brand/krevon-logo-on-${on}.svg`)}
       alt={site.name}
       width={200}
       height={120}

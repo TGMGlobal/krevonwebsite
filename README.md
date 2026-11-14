@@ -82,6 +82,14 @@ Everything below is a marked placeholder today.
 
 To update the site later: edit, run `npm run build`, upload the contents of `out/` again.
 
+## Preview on GitHub Pages
+
+`.github/workflows/pages.yml` publishes a preview at `https://tgmglobal.github.io/krevonwebsite/` on every push to `main` or the working branch. The preview is public, is marked noindex, and is separate from the Hostinger site.
+
+One-time setup on GitHub: **Settings > Pages > Source: GitHub Actions**. If a deploy from a branch other than `main` is rejected, add that branch under **Settings > Environments > github-pages > Deployment branches**.
+
+To make the form send on the preview, add `NEXT_PUBLIC_WEB3FORMS_KEY` under **Settings > Secrets and variables > Actions > Variables**.
+
 ## Checks
 
 ```bash
