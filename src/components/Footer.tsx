@@ -1,76 +1,51 @@
-const SITEMAP = [
-  { label: "Selected Work", href: "#work" },
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "Studio", href: "#philosophy" },
-  { label: "Contact", href: "#contact" },
-];
-
-const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com/krevonstudio" },
-];
+import Link from "next/link";
+import { site } from "@/content/site";
+import { Logo } from "./Logo";
 
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="bg-ink px-5 pb-8 pt-16 text-paper md:px-10 md:pb-10 md:pt-24">
-      <div className="grid grid-cols-1 gap-12 border-b border-line-dark pb-14 md:grid-cols-12 md:gap-6 md:pb-20">
-        <div className="md:col-span-6">
-          <p className="text-balance font-display text-3xl italic leading-snug tracking-tight md:text-4xl">
-            We tell you the truth, not what&rsquo;s comfortable — so your
-            brand can lead its category.
-          </p>
+    <footer className="border-t border-cream/15 bg-black text-cream">
+      <div className="shell grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:gap-8 md:py-24">
+        <div className="flex flex-col gap-7 md:col-span-6">
+          <Link href="/" aria-label={`${site.name}, home`} className="w-fit">
+            <Logo on="black" className="h-20 md:h-24" />
+          </Link>
+          <p className="display text-3xl text-green md:text-4xl">{site.tagline}</p>
+          <p className="max-w-md text-sm leading-relaxed text-cream/75">{site.footer.line}</p>
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3 md:col-span-3">
-          <span className="mb-1 font-mono text-xs uppercase tracking-[0.2em] text-paper/40">
-            Sitemap
-          </span>
-          {SITEMAP.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="w-fit text-sm text-paper/80 transition-colors hover:text-olive"
-            >
+          <span className="eyebrow mb-2 text-cream/65">{site.footer.pagesLabel}</span>
+          {site.nav.map((link) => (
+            <Link key={link.href} href={link.href} className="w-fit text-sm transition-colors hover:text-green">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex flex-col gap-3 md:col-span-3">
-          <span className="mb-1 font-mono text-xs uppercase tracking-[0.2em] text-paper/40">
-            Elsewhere
-          </span>
-          {SOCIALS.map((s) => (
+          <span className="eyebrow mb-2 text-cream/65">{site.footer.contactLabel}</span>
+          <a href={`mailto:${site.email}`} className="w-fit text-sm transition-colors hover:text-green">
+            {site.email}
+          </a>
+          {site.socials.map((social) => (
             <a
-              key={s.href}
-              href={s.href}
+              key={social.href}
+              href={social.href}
               target="_blank"
               rel="noreferrer noopener"
-              className="w-fit text-sm text-paper/80 transition-colors hover:text-olive"
+              className="w-fit text-sm transition-colors hover:text-green"
             >
-              {s.label}
+              {social.label}
             </a>
           ))}
-          <a
-            href="mailto:hello@krevonstudio.com"
-            className="w-fit text-sm text-paper/80 transition-colors hover:text-olive"
-          >
-            hello@krevonstudio.com
-          </a>
         </div>
       </div>
 
-      <div className="flex flex-col-reverse items-start justify-between gap-6 pt-8 md:flex-row md:items-end">
-        <span className="font-display text-[15vw] italic leading-[0.8] tracking-tight text-paper/10 md:text-[7vw]">
-          Krevon
-        </span>
-
-        <div className="flex w-full items-center justify-between gap-4 font-mono text-xs uppercase tracking-[0.15em] text-paper/50 md:w-auto md:flex-col md:items-end md:gap-2">
-          <span>© {year} Krevon Studio</span>
-          <a href="#top" className="text-paper/70 transition-colors hover:text-olive">
-            Back to top ↑
-          </a>
+      <div className="border-t border-cream/15">
+        <div className="shell eyebrow flex flex-col gap-2 py-6 text-cream/65 sm:flex-row sm:items-center sm:justify-between">
+          <span>{site.footer.copyright}</span>
+          <span>{site.locations}</span>
         </div>
       </div>
     </footer>
