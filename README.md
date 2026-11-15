@@ -82,6 +82,13 @@ Everything below is a marked placeholder today.
 
 To update the site later: edit, run `npm run build`, upload the contents of `out/` again.
 
+## Two sites in this repository
+
+- The repository root is the first site.
+- `v2/` is a second, separate site built around the line "Yes is cheap." It has its own README, content files and build.
+
+Both publish to GitHub Pages: the first at `/krevonwebsite/`, the second at `/krevonwebsite/v2/`.
+
 ## Preview on GitHub Pages
 
 `.github/workflows/pages.yml` publishes a preview at `https://tgmglobal.github.io/krevonwebsite/` on every push to `main` or the working branch. The preview is public, is marked noindex, and is separate from the Hostinger site.

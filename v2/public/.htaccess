@@ -1,0 +1,37 @@
+# Krevon Studio static site (Next.js export) on Hostinger
+
+# Branded 404 page for missing routes
+ErrorDocument 404 /404.html
+
+# No directory listings
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Flag hashed build assets so they can be cached for a year
+  RewriteRule ^_next/static/ - [E=KREVON_IMMUTABLE:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=KREVON_IMMUTABLE
+</IfModule>
+
+# Compress text assets (Hostinger usually does this already)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# Images, fonts and icons outside /_next/static/: cache for a week
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 7 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>

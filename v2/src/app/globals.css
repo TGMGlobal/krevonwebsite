@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* Krevon brand palette. These four are the only colours on the site.
+     Softer text and hairlines are opacity tints of them (e.g. text-cream/70). */
+  --color-*: initial;
+  --color-black: #000000;
+  --color-green: #39d753;
+  --color-cream: #eee2d4;
+  --color-offwhite: #f9f9f9;
+
+  /* Type. --font-display-face is set in src/app/layout.tsx (Rajdhani for now,
+     licensed Agency later). --font-body-face is Montserrat. */
+  --font-display: var(--font-display-face), "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-sans: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    background: var(--color-black);
+  }
+
+  body {
+    background: var(--color-black);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-green);
+    color: var(--color-black);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 3px;
+  }
+
+  /* Green has too little contrast on light or green backgrounds. */
+  .on-light :focus-visible {
+    outline-color: var(--color-black);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Page gutter and max width */
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 100rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+/* Display headings: tight caps */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+}
+
+/* Small spaced labels */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* The green pen stroke that crosses a phrase out. GSAP draws it; with
+   reduced motion it is simply shown drawn. */
+.strike {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strike {
+    transform: scaleX(1);
+  }
+}

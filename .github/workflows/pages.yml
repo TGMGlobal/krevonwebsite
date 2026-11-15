@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            v2/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm run build
@@ -38,6 +41,17 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
           # Optional: add this as a repository variable to make the form send.
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_KEY }}
+      # Second site: built from v2/ and published under /<repository-name>/v2/
+      - run: npm ci
+        working-directory: v2
+      - run: npm run lint
+        working-directory: v2
+      - run: npm run build
+        working-directory: v2
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}/v2
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_KEY }}
+      - run: cp -r v2/out out/v2
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
