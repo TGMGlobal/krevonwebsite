@@ -5,7 +5,7 @@ export const ogImage = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: `${site.name}. ${site.tagline}`,
+  alt: `${site.name}. ${site.line}`,
 };
 
 /**

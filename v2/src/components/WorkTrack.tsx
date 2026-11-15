@@ -8,6 +8,7 @@ import { home } from "@/content/home";
 import { caseStudies } from "@/content/work";
 import { asset } from "@/lib/paths";
 import { Arrow, Button } from "./Button";
+import { PenCircle, PenNote } from "./Pen";
 
 /**
  * The four projects. On desktop the section pins and the plates travel
@@ -50,6 +51,9 @@ export function WorkTrack() {
           <div>
             <p className="eyebrow mb-3 text-green">{copy.eyebrow}</p>
             <h2 className="display text-5xl text-cream md:text-6xl">{copy.heading}</h2>
+            <PenNote className="mt-2" tilt={-2}>
+              {copy.note}
+            </PenNote>
           </div>
           <div className="hidden sm:block">
             <Button href="/work/" variant="outline">
@@ -77,8 +81,13 @@ export function WorkTrack() {
                 </div>
 
                 <div>
-                  <p className="display text-[clamp(5rem,11vw,11rem)] text-green">{study.highlight.value}</p>
+                  <p className="display text-[clamp(5rem,11vw,11rem)] text-green">
+                    {i === 0 ? <PenCircle>{study.highlight.value}</PenCircle> : study.highlight.value}
+                  </p>
                   <p className="mt-1 text-base text-cream/85 md:text-lg">{study.highlight.label}</p>
+                  <PenNote className="mt-3" tilt={i % 2 === 0 ? -3 : 2}>
+                    {study.penNote}
+                  </PenNote>
                 </div>
 
                 <div className="flex items-end justify-between gap-6 border-t border-cream/20 pt-5">

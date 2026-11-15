@@ -42,6 +42,8 @@ export type CaseStudy = {
   tags: string[];
   /** The single figure or word shown huge on the homepage and work index. */
   highlight: { value: string; label: string };
+  /** Handwritten note on the homepage plate. Facts only. */
+  penNote: string;
   /** The comfortable suggestion Krevon did not take. Shown crossed out. */
   easyAnswer: string;
   brief: string;
@@ -93,6 +95,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Wellness studio, India",
     tags: ["Performance marketing", "Meta", "Google Search"],
     highlight: { value: "2,369", label: "enquiries at approx. $0.93 each" },
+    penNote: "under a dollar each.",
     easyAnswer: "One big awareness campaign.",
     brief:
       "Pilates, yoga, functional training, sound healing, physiotherapy, recovery therapies and community events, all on one ad budget. Each service needed its own steady enquiries, without the cost per enquiry creeping up.",
@@ -140,6 +143,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Culinary school, online and offline workshops (India)",
     tags: ["Brand identity", "Paid growth"],
     highlight: { value: "12K+", label: "followers in 6 months, 90% organic" },
+    penNote: "nine in ten came on their own.",
     easyAnswer: "Post more reels.",
     brief:
       "A niche brand with a Gen Z founder, in a crowded category. People want to know a cooking school is reliable before they pay. JK had to read as the trusted choice.",
@@ -171,6 +175,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Early-stage US healthcare and lifestyle brand (insomnia and productivity)",
     tags: ["Pitch deck", "Investor narrative"],
     highlight: { value: "Seed", label: "round deck, medicine and market in one story" },
+    penNote: "no claim about money raised.",
     easyAnswer: "Add more slides.",
     brief:
       "An early-stage US brand working on insomnia and productivity, preparing for a seed round. Investors in this category want medical credibility and a clear market in the same pitch.",
@@ -201,6 +206,7 @@ export const caseStudies: CaseStudy[] = [
     category: "AI and workflow automation for e-commerce and D2C. A Krevon system.",
     tags: ["AI automation", "Shopify", "D2C"],
     highlight: { value: "Days", label: "for a catalogue that takes months by hand" },
+    penNote: "built. not yet measured.",
     easyAnswer: "Hire more people to write listings.",
     brief:
       "Every new product needs a title, a description, tags and images. Done by hand, a 500-SKU launch turns into months of work.",

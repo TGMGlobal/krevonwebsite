@@ -9,7 +9,8 @@ export const site = {
   shortName: "Krevon",
   url: "https://krevonstudio.com",
   email: "hello@krevonstudio.com",
-  tagline: "Straight talk. Built to lead.",
+  /** The one line the studio stands on. Used in the footer, page title and share image. */
+  line: "Yes is cheap.",
   description:
     "Krevon Studio is a creative, strategy and automation studio. It tells you what is wrong with your brand, then builds what fixes it.",
 

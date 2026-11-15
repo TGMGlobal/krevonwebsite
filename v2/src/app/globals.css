@@ -13,6 +13,8 @@
      licensed Agency later). --font-body-face is Montserrat. */
   --font-display: var(--font-display-face), "Arial Narrow", "Helvetica Neue", sans-serif;
   --font-sans: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+  /* Handwriting for the pen's margin notes only. */
+  --font-pen: var(--font-pen-face), "Segoe Print", "Bradley Hand", cursive;
 
   --animate-marquee: marquee 40s linear infinite;
 
@@ -112,5 +114,30 @@
 @media (prefers-reduced-motion: reduce) {
   .strike {
     transform: scaleX(1);
+  }
+}
+
+/* Handwritten margin notes */
+@utility pen {
+  font-family: var(--font-pen);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Pen strokes (circles, underlines, ticks, arrows). GSAP draws them by
+   animating the dash offset; with reduced motion they are shown drawn. */
+.pen-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pen-path {
+    stroke-dashoffset: 0;
   }
 }

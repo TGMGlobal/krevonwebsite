@@ -172,7 +172,7 @@ export function SiteNav() {
         </nav>
 
         <div data-menu-item className="mt-10 flex flex-col gap-3">
-          <span className="eyebrow text-green">{site.tagline}</span>
+          <span className="eyebrow text-green">{site.line}</span>
           <a href={`mailto:${site.email}`} className="text-sm text-cream underline underline-offset-4">
             {site.email}
           </a>

@@ -11,7 +11,7 @@ export function Footer() {
           <Link href="/" aria-label={`${site.name}, home`} className="w-fit">
             <Logo on="black" className="h-20" />
           </Link>
-          <p className="display text-3xl text-green">{site.tagline}</p>
+          <p className="display text-3xl text-green">{site.line}</p>
         </div>
 
         <div className="flex flex-wrap gap-x-10 gap-y-4 text-sm">

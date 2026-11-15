@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Rajdhani } from "next/font/google";
+import { Caveat, Montserrat, Rajdhani } from "next/font/google";
 import { SiteNav } from "@/components/SiteNav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
@@ -32,6 +32,19 @@ const body = Montserrat({
   subsets: ["latin"],
   variable: "--font-body-face",
   display: "swap",
+});
+
+/**
+ * The pen. Used only for handwritten margin notes (the `pen` class).
+ * It is not a brand font: remove this block and the variable below to drop it.
+ */
+const pen = Caveat({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-pen-face",
+  display: "swap",
+  // Notes are decoration: let the headline fonts load first.
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -77,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${pen.variable}`}>
       <body>
         <a
           href="#main"

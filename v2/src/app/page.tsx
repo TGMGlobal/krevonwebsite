@@ -23,7 +23,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   "@id": `${site.url}/#organization`,
   name: site.name,
-  slogan: site.tagline,
+  slogan: site.line,
   description: site.description,
   url: `${site.url}/`,
   email: site.email,
@@ -42,25 +42,18 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
-      <Quote
-        tone="green"
-        opening={home.quotes.first.opening}
-        rest={home.quotes.first.rest}
-        attribution={home.quotes.first.attribution}
-      />
-      <Clients />
       <WorkTrack />
+      <Clients />
+      <Quote tone="green" {...home.quotes.first} />
       <Rules />
       <Capabilities />
-      <Quote
-        tone="light"
-        mirrored
-        opening={home.quotes.second.opening}
-        rest={home.quotes.second.rest}
-        attribution={home.quotes.second.attribution}
-        note={home.quotes.note}
+      <Quote tone="black" side="right" {...home.quotes.second} footnote={home.quotes.note} />
+      <Closing
+        heading={home.closing.heading}
+        body={home.closing.body}
+        button={home.closing.cta}
+        penNote={home.closing.penNote}
       />
-      <Closing heading={home.closing.heading} body={home.closing.body} button={home.closing.cta} />
     </>
   );
 }

@@ -24,6 +24,12 @@ All text is in `src/content/`:
 | `studio.ts` | Sprints, paths, services |
 | `contact.ts` | Contact page and form |
 
+## The pen
+
+The site's running idea is a green pen correcting the page: cross-outs, ticks, circles and handwritten notes. Notes live in the content files as `penNote`, `note`, `wallNote` and similar fields. Keep them short and factual. The handwriting font is set once, at the top of `src/app/layout.tsx`.
+
+The YES/NO switch in the hero is in `home.ts` under `hero.switch`.
+
 ## Still needed
 
 - **Logos** in `public/brand/` (three SVGs, same filenames as now).
