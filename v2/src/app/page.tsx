@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
-import { Statement } from "@/components/Statement";
 import { Clients } from "@/components/Clients";
 import { WorkTrack } from "@/components/WorkTrack";
 import { Rules } from "@/components/Rules";
 import { Capabilities } from "@/components/Capabilities";
-import { Quotes } from "@/components/Quotes";
+import { Quote } from "@/components/Quote";
 import { Closing } from "@/components/Closing";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
@@ -43,12 +42,24 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
-      <Statement text={home.statement} />
+      <Quote
+        tone="green"
+        opening={home.quotes.first.opening}
+        rest={home.quotes.first.rest}
+        attribution={home.quotes.first.attribution}
+      />
       <Clients />
       <WorkTrack />
       <Rules />
       <Capabilities />
-      <Quotes />
+      <Quote
+        tone="light"
+        mirrored
+        opening={home.quotes.second.opening}
+        rest={home.quotes.second.rest}
+        attribution={home.quotes.second.attribution}
+        note={home.quotes.note}
+      />
       <Closing heading={home.closing.heading} body={home.closing.body} button={home.closing.cta} />
     </>
   );

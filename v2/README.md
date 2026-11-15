@@ -27,7 +27,7 @@ All text is in `src/content/`:
 ## Still needed
 
 - **Logos** in `public/brand/` (three SVGs, same filenames as now).
-- **Client logos**: add files to `public/clients/` and set `logo` on a client in `home.ts`. Until then names are set in type.
+- **Client logos**: add single-colour SVG or transparent PNG files to `public/clients/` and set `logo: "/clients/name.svg"` on a client in `home.ts`. Each logo is drawn in one colour so they sit together. Until then names are set in type.
 - **Case study images**: add WebP files to `public/work/<slug>/` and list them under `images` in `work.ts`. Pages work without them.
 - **Agency web font**: see the comment at the top of `src/app/layout.tsx`.
 - **Web3Forms key**: set `NEXT_PUBLIC_WEB3FORMS_KEY` in `.env.local` before building.

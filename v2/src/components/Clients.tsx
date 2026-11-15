@@ -1,65 +1,85 @@
-import Image from "next/image";
 import Link from "next/link";
 import { home, type Client } from "@/content/home";
 import { asset } from "@/lib/paths";
 import { Arrow } from "./Button";
 import { Reveal } from "./Reveal";
 
-/** The client list, set as large as the headline. Names are the proof. */
+/**
+ * The client roster as a grid of large cells. Each cell shows the brand's
+ * logo when one is set, drawn in a single colour so six different logos sit
+ * together, and the name in type until then. Hover fills the cell green.
+ */
+function Cell({ client, index }: { client: Client; index: number }) {
+  const inner = (
+    <>
+      <span className="eyebrow text-cream/70 transition-colors duration-300 group-hover:text-black">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <span className="flex flex-1 items-center justify-center px-2 py-6">
+        {client.logo ? (
+          <span
+            role="img"
+            aria-label={client.name}
+            className="block h-12 w-full max-w-[14rem] bg-cream transition-colors duration-300 group-hover:bg-black md:h-16"
+            style={{
+              maskImage: `url(${asset(client.logo)})`,
+              WebkitMaskImage: `url(${asset(client.logo)})`,
+              maskSize: "contain",
+              WebkitMaskSize: "contain",
+              maskRepeat: "no-repeat",
+              WebkitMaskRepeat: "no-repeat",
+              maskPosition: "center",
+              WebkitMaskPosition: "center",
+            }}
+          />
+        ) : (
+          <span className="display text-balance text-center text-[clamp(1.75rem,3.6vw,3.75rem)] text-cream transition-colors duration-300 group-hover:text-black">
+            {client.name}
+          </span>
+        )}
+      </span>
+
+      <span className="eyebrow flex h-5 items-center justify-end gap-3 text-cream transition-colors duration-300 group-hover:text-black">
+        {client.href ? (
+          <>
+            {home.clients.caseLabel}
+            <Arrow />
+          </>
+        ) : null}
+      </span>
+    </>
+  );
+
+  const classes =
+    "group flex h-full min-h-[11rem] flex-col bg-black p-5 transition-colors duration-300 hover:bg-green md:min-h-[17rem] md:p-7";
+
+  return client.href ? (
+    <Link href={client.href} className={classes}>
+      {inner}
+    </Link>
+  ) : (
+    <div className={classes}>{inner}</div>
+  );
+}
+
 export function Clients() {
   const { clients } = home;
 
   return (
-    <section className="on-light bg-offwhite text-black">
+    <section className="bg-black">
       <div className="shell py-20 md:py-32">
-        <h2 className="eyebrow mb-10 text-black/70 md:mb-14">{clients.eyebrow}</h2>
+        <h2 className="display mb-10 max-w-[24ch] text-balance text-5xl text-cream md:mb-14 md:text-7xl">
+          {clients.heading}
+        </h2>
 
-        <Reveal as="ul" stagger className="border-t-2 border-black">
-          {(clients.items as Client[]).map((client, i) => {
-            const name = client.logo ? (
-              <Image
-                src={asset(client.logo)}
-                alt={client.name}
-                width={320}
-                height={96}
-                loading="lazy"
-                className="h-[0.8em] w-auto"
-              />
-            ) : (
-              client.name
-            );
-
-            const row = (
-              <>
-                <span className="eyebrow w-8 shrink-0 text-black/70">{String(i + 1).padStart(2, "0")}</span>
-                <span className="display relative text-[clamp(2.5rem,8.6vw,8.5rem)] transition-transform duration-500 ease-out group-hover:translate-x-3">
-                  <span
-                    aria-hidden="true"
-                    className="absolute -inset-x-[0.12em] inset-y-[0.06em] origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100"
-                  />
-                  <span className="relative">{name}</span>
-                </span>
-                {client.href ? (
-                  <span className="eyebrow ml-auto hidden shrink-0 items-center gap-3 self-center text-black sm:flex">
-                    {clients.caseLabel}
-                    <Arrow />
-                  </span>
-                ) : null}
-              </>
-            );
-
-            return (
-              <li key={client.name} className="border-b border-black/25">
-                {client.href ? (
-                  <Link href={client.href} className="group flex items-baseline gap-4 py-3 md:gap-8 md:py-4">
-                    {row}
-                  </Link>
-                ) : (
-                  <div className="group flex items-baseline gap-4 py-3 md:gap-8 md:py-4">{row}</div>
-                )}
-              </li>
-            );
-          })}
+        {/* 1px gaps over a tinted background draw the hairlines between cells. */}
+        <Reveal as="ul" className="grid grid-cols-2 gap-px border border-cream/25 bg-cream/25 md:grid-cols-3">
+          {(clients.items as Client[]).map((client, i) => (
+            <li key={client.name}>
+              <Cell client={client} index={i} />
+            </li>
+          ))}
         </Reveal>
       </div>
     </section>

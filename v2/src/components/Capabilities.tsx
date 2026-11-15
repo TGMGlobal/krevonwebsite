@@ -7,7 +7,7 @@ export function Capabilities() {
   const copy = home.capabilities;
 
   return (
-    <section className="border-t border-cream/15 bg-black">
+    <section className="bg-black">
       <div className="shell py-24 md:py-36">
         <h2 className="eyebrow mb-8 text-green md:mb-12">{copy.eyebrow}</h2>
         <Reveal>

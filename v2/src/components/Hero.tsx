@@ -50,7 +50,8 @@ export function Hero() {
 
   return (
     <section ref={rootRef} className="relative flex min-h-svh flex-col overflow-hidden bg-black pt-18 md:pt-22">
-      <div className="flex flex-1 flex-col justify-center py-6">
+      <p className="shell eyebrow pt-6 text-cream/75 md:pt-8">{hero.wallLabel}</p>
+      <div className="flex flex-1 flex-col justify-center py-5">
         {hero.wall.map((row, r) => (
           <div
             key={r}
@@ -79,7 +80,7 @@ export function Hero() {
       <div className="shell grid grid-cols-1 gap-6 pb-8 md:grid-cols-12 md:items-end md:pb-10">
         <div className="md:col-span-6">
           <p className="eyebrow mb-3 text-green">{site.tagline}</p>
-          <p className="max-w-md text-pretty text-lg leading-snug text-cream md:text-xl">{hero.body}</p>
+          <p className="max-w-lg text-pretty text-lg leading-snug text-cream md:text-xl">{hero.body}</p>
         </div>
         <div className="flex md:col-span-6 md:justify-end">
           <Button href={site.cta.href} variant="green" magnetic className="w-full sm:w-auto">

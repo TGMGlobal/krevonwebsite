@@ -33,16 +33,17 @@ export const home = {
       ["Whatever you think.", "Amazing.", "Yes. Yes."],
     ],
     headlineRow: 2,
-    body: "Krevon is the studio that says the other thing. Then builds what fixes it.",
+    /** Small label above the wall, so a first-time visitor knows whose words these are. */
+    wallLabel: "Heard in every agency meeting",
+    body: "Krevon is a creative, strategy and automation studio that says the other thing. Then builds what fixes it.",
   },
 
-  statement: "Krevon works for your brand. Some days that means disagreeing with you.",
-
   clients: {
-    eyebrow: "50+ brands in three years. Six of them:",
+    heading: "50+ brands in three years. Six of them:",
+    /** A logo replaces the name once `logo` is set on a client below. */
     caseLabel: "Case study",
     items: [
-      { name: "Mahindra TEQO" },
+      { name: "Mahindra" },
       { name: "Samyah Wellness", href: "/work/samyah-wellness/" },
       { name: "JK Cookery School", href: "/work/jk-cookery-school/" },
       { name: "Estancia" },
@@ -81,18 +82,19 @@ export const home = {
     cta: { label: "How it works", href: "/studio/" },
   },
 
+  /** Two client quotes. `first` sits high on the page in green, `second` near the end. */
   quotes: {
-    eyebrow: "Clients, unprompted",
+    eyebrow: "A client, in their words",
     note: "Names withheld at their request.",
-    lead: {
-      /** The first sentence is set large. */
+    first: {
+      /** The opening words are set large. */
       opening: "They're a bunch of naysayers,",
       rest: "and I ended up learning a lot about how to approach brands and marketing. It can feel rude at the start, but as you work together you understand they're working for the brand, not trying to impress you to keep the account.",
       attribution: "Co-founder, real estate",
     },
     second: {
-      quote:
-        "The team does all the heavy lifting and nurtures the bonds of friendship, even celebrating their clients' birthdays like family. The timelines, deliverables and approach the team brings are appreciated.",
+      opening: "The team does all the heavy lifting",
+      rest: "and nurtures the bonds of friendship, even celebrating their clients' birthdays like family. The timelines, deliverables and approach the team brings are appreciated.",
       attribution: "Owner and Founder, F&B brand",
     },
   },
