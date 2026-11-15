@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow } from "@/components/Button";
 import { Closing } from "@/components/Closing";
 import { Reveal } from "@/components/Reveal";
+import { Strike } from "@/components/Strike";
+import { Gallery } from "@/components/Gallery";
 import { caseStudies, getCaseStudy, getNextCaseStudy, workPage } from "@/content/work";
 import { site } from "@/content/site";
-import { asset } from "@/lib/paths";
 import { pageMeta } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -74,6 +74,12 @@ export default async function CaseStudyPage({ params }: Props) {
 
       <section className="on-light bg-offwhite text-black">
         <div className="shell grid grid-cols-1 gap-14 py-20 md:grid-cols-2 md:gap-16 md:py-28">
+          <div className="md:col-span-2">
+            <h2 className="eyebrow mb-3 text-black/70">{labels.easyAnswer}</h2>
+            <p className="display text-[clamp(2.25rem,6vw,6rem)] text-black/55">
+              <Strike>{study.easyAnswer}</Strike>
+            </p>
+          </div>
           <div>
             <h2 className="eyebrow mb-5 text-black/70">{labels.brief}</h2>
             <p className="text-pretty text-xl font-medium leading-snug md:text-2xl md:leading-snug">{study.brief}</p>
@@ -86,22 +92,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {study.images.length > 0 ? (
-        <section className="bg-black">
-          <div className="shell grid grid-cols-1 gap-5 pt-20 md:grid-cols-2 md:gap-6 md:pt-28">
-            {study.images.map((image, i) => (
-              <div key={image.src} className={`relative aspect-[4/3] overflow-hidden ${i === 0 ? "md:col-span-2 md:aspect-[16/9]" : ""}`}>
-                <Image
-                  src={asset(image.src)}
-                  alt={image.alt}
-                  fill
-                  sizes={i === 0 ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
-                  loading="lazy"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+        <Gallery heading={labels.made} layout={study.gallery} images={study.images} note={study.imagesNote} />
       ) : null}
 
       <section className="bg-black">

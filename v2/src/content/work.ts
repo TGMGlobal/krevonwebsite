@@ -1,15 +1,28 @@
 /**
  * Case studies. Edit the text between the quotes.
  *
- * IMAGES: put WebP files in public/work/<slug>/ and list them under `images`,
- * e.g. { src: "/work/samyah-wellness/01.webp", alt: "What the image shows" }.
+ * IMAGES: put WebP files in public/work/<slug>/ and list them under `images`
+ * with their pixel size. `cover` is the image shown on the homepage plate.
  * A case study with no images is laid out in type alone.
  *
  * MONEY: USD is the main figure with `approx: true`. The rupee original goes
  * in `original`. Do not round the numbers up.
  */
 
-export type CaseImage = { src: string; alt: string };
+export type CaseImage = {
+  src: string;
+  alt: string;
+  /** Pixel size of the file, so the page can reserve the right space. */
+  width: number;
+  height: number;
+};
+
+/**
+ * How a case study's images are arranged:
+ * "wall" for many same-shaped pieces (ads), "feature" for one large image
+ * with smaller ones beside it, "pairs" for a two-by-two set (slides).
+ */
+export type GalleryLayout = "wall" | "feature" | "pairs";
 
 export type Stat = {
   value: string;
@@ -29,12 +42,18 @@ export type CaseStudy = {
   tags: string[];
   /** The single figure or word shown huge on the homepage and work index. */
   highlight: { value: string; label: string };
+  /** The comfortable suggestion Krevon did not take. Shown crossed out. */
+  easyAnswer: string;
   brief: string;
   work: string;
   resultsHeading: string;
   resultsNote?: string;
   results: Stat[];
   insight?: string;
+  cover?: CaseImage;
+  gallery: GalleryLayout;
+  /** Small line under the images. */
+  imagesNote?: string;
   images: CaseImage[];
 };
 
@@ -51,6 +70,8 @@ export const workPage = {
     brief: "The brief",
     work: "What Krevon did",
     next: "Next",
+    easyAnswer: "The easy answer",
+    made: "What got made",
     approx: "approx.",
     open: "Open",
   },
@@ -72,6 +93,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Wellness studio, India",
     tags: ["Performance marketing", "Meta", "Google Search"],
     highlight: { value: "2,369", label: "enquiries at approx. $0.93 each" },
+    easyAnswer: "One big awareness campaign.",
     brief:
       "Pilates, yoga, functional training, sound healing, physiotherapy, recovery therapies and community events, all on one ad budget. Each service needed its own steady enquiries, without the cost per enquiry creeping up.",
     work: "45 campaigns across Meta and Google Search from April to September 2026, with separate campaigns for each service. Awareness went first, service-level lead campaigns followed. Once WhatsApp and Instagram DM conversations proved cheaper than form and website leads, most of the spend moved there. Weaker services, Functional Training among them, were cut back and reworked.",
@@ -94,7 +116,19 @@ export const caseStudies: CaseStudy[] = [
     ],
     insight:
       "Experience-led offers drove the cost down. An event or a course launch gives people a concrete reason to reach out.",
-    images: [],
+    cover: { src: "/work/samyah-wellness/sound-healing-course.webp", alt: "Samyah Wellness ad for a Sound Healing foundation course", width: 572, height: 716 },
+    gallery: "wall",
+    imagesNote: "Eight of the ads from the campaign.",
+    images: [
+      { src: "/work/samyah-wellness/sound-healing-course.webp", alt: "Samyah Wellness ad for a Sound Healing foundation course", width: 572, height: 716 },
+      { src: "/work/samyah-wellness/ice-bath.webp", alt: "Samyah Wellness ad for Ice Bath Therapy", width: 681, height: 851 },
+      { src: "/work/samyah-wellness/pilates.webp", alt: "Samyah Wellness ad for Pilates", width: 595, height: 745 },
+      { src: "/work/samyah-wellness/acroyoga.webp", alt: "Samyah Wellness ad for an AcroYoga session", width: 594, height: 742 },
+      { src: "/work/samyah-wellness/red-light.webp", alt: "Samyah Wellness ad for Red Light Therapy", width: 682, height: 852 },
+      { src: "/work/samyah-wellness/bhajan-clubbing.webp", alt: "Samyah Wellness ad for a Bhajan Clubbing community event", width: 595, height: 744 },
+      { src: "/work/samyah-wellness/physiotherapy.webp", alt: "Samyah Wellness ad for Physiotherapy", width: 613, height: 766 },
+      { src: "/work/samyah-wellness/yoga-teacher-training.webp", alt: "Samyah Wellness ad for a 200-hour Yoga Teacher Training", width: 693, height: 860 },
+    ],
   },
   {
     slug: "jk-cookery-school",
@@ -106,6 +140,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Culinary school, online and offline workshops (India)",
     tags: ["Brand identity", "Paid growth"],
     highlight: { value: "12K+", label: "followers in 6 months, 90% organic" },
+    easyAnswer: "Post more reels.",
     brief:
       "A niche brand with a Gen Z founder, in a crowded category. People want to know a cooking school is reliable before they pay. JK had to read as the trusted choice.",
     work: "Persona research came first. It shaped the brand voice, a redesigned logo and a colour system, which then ran through packaging and menus. A communication strategy and paid campaigns followed.",
@@ -116,7 +151,15 @@ export const caseStudies: CaseStudy[] = [
       { value: "415", label: "leads" },
       { value: "$11,000", approx: true, original: "~₹10,00,000", label: "in revenue generated" },
     ],
-    images: [],
+    cover: { src: "/work/jk-cookery-school/identity-system.webp", alt: "JK Cookery School identity: logo, apron, signage, packaging and bag", width: 845, height: 617 },
+    gallery: "feature",
+    images: [
+      { src: "/work/jk-cookery-school/identity-system.webp", alt: "JK Cookery School identity: logo, apron, signage, packaging and bag", width: 845, height: 617 },
+      { src: "/work/jk-cookery-school/packaging.webp", alt: "JK Cookery School cake box packaging", width: 363, height: 286 },
+      { src: "/work/jk-cookery-school/apron.webp", alt: "JK Cookery School logo embroidered on an apron", width: 268, height: 280 },
+      { src: "/work/jk-cookery-school/ad-masterclass-may.webp", alt: "JK Cookery School ad for a May cake masterclass", width: 340, height: 339 },
+      { src: "/work/jk-cookery-school/ad-masterclass-june.webp", alt: "JK Cookery School ad for a June whipped cream masterclass", width: 342, height: 343 },
+    ],
   },
   {
     slug: "us-healthcare-pitch-deck",
@@ -128,6 +171,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Early-stage US healthcare and lifestyle brand (insomnia and productivity)",
     tags: ["Pitch deck", "Investor narrative"],
     highlight: { value: "Seed", label: "round deck, medicine and market in one story" },
+    easyAnswer: "Add more slides.",
     brief:
       "An early-stage US brand working on insomnia and productivity, preparing for a seed round. Investors in this category want medical credibility and a clear market in the same pitch.",
     work: "One data-backed narrative that joins the medical insight to the market opportunity. The deck runs in four parts: problem scale, product concept, competitive landscape, business model.",
@@ -137,7 +181,15 @@ export const caseStudies: CaseStudy[] = [
       { value: "1", label: "investor-ready deck, delivered for the founders' seed-round conversations" },
       { value: "4", label: "parts: problem scale, product concept, competitive landscape, business model" },
     ],
-    images: [],
+    cover: { src: "/work/us-healthcare-pitch-deck/slide-public-health.webp", alt: "Pitch deck slide on the public health significance of insomnia", width: 573, height: 321 },
+    gallery: "pairs",
+    imagesNote: "Two slides are blurred to keep the client confidential.",
+    images: [
+      { src: "/work/us-healthcare-pitch-deck/slide-problem-scale.webp", alt: "Pitch deck slide on the scale of insomnia, blurred for confidentiality", width: 572, height: 321 },
+      { src: "/work/us-healthcare-pitch-deck/slide-competitive-landscape.webp", alt: "Pitch deck slide on the competitive landscape, blurred for confidentiality", width: 573, height: 321 },
+      { src: "/work/us-healthcare-pitch-deck/slide-modalities.webp", alt: "Pitch deck slide comparing insomnia treatment approaches", width: 572, height: 321 },
+      { src: "/work/us-healthcare-pitch-deck/slide-public-health.webp", alt: "Pitch deck slide on the public health significance of insomnia", width: 573, height: 321 },
+    ],
   },
   {
     slug: "shopify-catalogue-automation",
@@ -149,6 +201,7 @@ export const caseStudies: CaseStudy[] = [
     category: "AI and workflow automation for e-commerce and D2C. A Krevon system.",
     tags: ["AI automation", "Shopify", "D2C"],
     highlight: { value: "Days", label: "for a catalogue that takes months by hand" },
+    easyAnswer: "Hire more people to write listings.",
     brief:
       "Every new product needs a title, a description, tags and images. Done by hand, a 500-SKU launch turns into months of work.",
     work: "Raw product inputs go in. AI drafts the complete Shopify listing: title, SEO-aware description, tags and imagery. A person approves each one. Approved products publish straight to the store, correctly categorised.",
@@ -160,6 +213,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "Every", label: "listing approved by a person before it goes live" },
     ],
     insight: "AI handles the volume. Your team handles the judgement.",
+    gallery: "wall",
     images: [],
   },
 ];

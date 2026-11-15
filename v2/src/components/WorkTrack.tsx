@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { home } from "@/content/home";
 import { caseStudies } from "@/content/work";
+import { asset } from "@/lib/paths";
 import { Arrow, Button } from "./Button";
 
 /**
@@ -64,29 +66,44 @@ export function WorkTrack() {
             <Link
               key={study.slug}
               href={`/work/${study.slug}/`}
-              className="group relative flex min-h-[26rem] w-full flex-col justify-between border border-cream/20 p-6 transition-colors duration-300 hover:border-green md:p-9 lg:h-[62svh] lg:min-h-0 lg:w-[58vw] lg:shrink-0 xl:w-[52vw]"
+              className="group relative flex w-full flex-col border border-cream/20 transition-colors duration-300 hover:border-green md:flex-row lg:h-[62svh] lg:w-[64vw] lg:shrink-0 xl:w-[58vw]"
             >
-              <div className="flex items-start justify-between gap-6">
-                <span className="eyebrow text-green">
-                  {String(i + 1).padStart(2, "0")} / {String(caseStudies.length).padStart(2, "0")}
-                </span>
-                <span className="eyebrow max-w-[60%] text-right text-cream/75">{study.tags.join(" · ")}</span>
-              </div>
-
-              <div>
-                <p className="display text-[clamp(5rem,13vw,13rem)] text-green">{study.highlight.value}</p>
-                <p className="mt-1 text-base text-cream/85 md:text-lg">{study.highlight.label}</p>
-              </div>
-
-              <div className="flex items-end justify-between gap-6 border-t border-cream/20 pt-5">
-                <div>
-                  <h3 className="display text-3xl text-cream md:text-4xl">{study.client}</h3>
-                  <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/80">{study.line}</p>
+              <div className="flex min-h-[24rem] flex-1 flex-col justify-between p-6 md:p-9 lg:min-h-0">
+                <div className="flex items-start justify-between gap-6">
+                  <span className="eyebrow text-green">
+                    {String(i + 1).padStart(2, "0")} / {String(caseStudies.length).padStart(2, "0")}
+                  </span>
+                  <span className="eyebrow max-w-[60%] text-right text-cream/75">{study.tags.join(" · ")}</span>
                 </div>
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-cream/40 text-cream transition-colors duration-300 group-hover:border-green group-hover:bg-green group-hover:text-black">
-                  <Arrow />
-                </span>
+
+                <div>
+                  <p className="display text-[clamp(5rem,11vw,11rem)] text-green">{study.highlight.value}</p>
+                  <p className="mt-1 text-base text-cream/85 md:text-lg">{study.highlight.label}</p>
+                </div>
+
+                <div className="flex items-end justify-between gap-6 border-t border-cream/20 pt-5">
+                  <div>
+                    <h3 className="display text-3xl text-cream md:text-4xl">{study.client}</h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/80">{study.line}</p>
+                  </div>
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-cream/40 text-cream transition-colors duration-300 group-hover:border-green group-hover:bg-green group-hover:text-black">
+                    <Arrow />
+                  </span>
+                </div>
               </div>
+
+              {study.cover ? (
+                <div className="relative order-first h-64 overflow-hidden border-b border-cream/20 md:order-none md:h-auto md:w-[38%] md:shrink-0 md:border-b-0 md:border-l">
+                  <Image
+                    src={asset(study.cover.src)}
+                    alt={study.cover.alt}
+                    fill
+                    sizes="(min-width: 1024px) 24vw, (min-width: 768px) 38vw, 100vw"
+                    loading="lazy"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+              ) : null}
             </Link>
           ))}
         </div>

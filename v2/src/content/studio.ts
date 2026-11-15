@@ -12,6 +12,8 @@ export const studio = {
 
   hero: {
     eyebrow: "Studio",
+    /** The comfortable starting point, shown crossed out above the heading. */
+    struck: "Start with a new logo.",
     heading: "Start with the truth.",
     body: "One to two weeks. Your brand, funnel or spend, scored against fixed modules. You leave with a fix list in priority order.",
     aside: "Scored against patterns from 50+ brands.",

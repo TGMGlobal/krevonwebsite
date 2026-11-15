@@ -16,7 +16,7 @@ export default function StudioPage() {
 
   return (
     <>
-      <PageHeader eyebrow={hero.eyebrow} heading={hero.heading} body={hero.body}>
+      <PageHeader eyebrow={hero.eyebrow} heading={hero.heading} body={hero.body} struck={hero.struck}>
         <p className="eyebrow mt-6 text-green md:ml-[33.333%]">{hero.aside}</p>
       </PageHeader>
 
